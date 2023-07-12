@@ -1,5 +1,4 @@
 import os.path
-
 import pandas as pd
 import glob
 from fpdf import FPDF
