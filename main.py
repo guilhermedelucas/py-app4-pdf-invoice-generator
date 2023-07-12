@@ -38,7 +38,7 @@ for filepath in filepaths:
 
     # Generate the table header
     pdf.set_font(family="Times", size=10, style="B")
-    for index, column in enumerate(df.columns):
+    for column in df.columns:
         cell_width = get_cell_with(column)
         pdf.cell(w=cell_width, h=CELL_HEIGHT, txt=str(column).replace('_', ' ').title(), border=1)
 
@@ -48,8 +48,8 @@ for filepath in filepaths:
     # Total will be calculated while iterating thought the cells
     total = 0
     for index, row in df.iterrows():  # iterate rows
-        for i, column in enumerate(df.columns):  # loop all the columns of the row (df.columns don't have the header)
-            if i == len(df.columns) - 1:
+        for column in df.columns:  # loop all the columns of the row (df.columns don't have the header)
+            if column == 'total_price':
                 total += row[column]
 
             cell_value = row[column]
