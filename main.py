@@ -48,7 +48,7 @@ for filepath in filepaths:
     # Total will be calculated while iterating thought the cells
     total = 0
     for index, row in df.iterrows():  # iterate rows
-        for column in df.columns:  # loop all the columns of the row (df.columns don't have the header)
+        for column in df.columns:  # loop all the columns of the row (df.columns only return the column name)
             if column == 'total_price':
                 total += row[column]
 
@@ -60,9 +60,9 @@ for filepath in filepaths:
         pdf.ln(CELL_HEIGHT)
 
     # Generate the last row, to display the total on the last column
-    for index, column in enumerate(df.columns):
+    for column in df.columns:
         cell_width = get_cell_with(column)
-        if index == len(df.columns) - 1:
+        if column == 'total_price':
             pdf.cell(w=cell_width, h=CELL_HEIGHT, txt=str(total), border=1)
         else:
             pdf.cell(w=cell_width, h=CELL_HEIGHT, txt="", border=1)
